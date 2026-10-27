@@ -1,0 +1,34 @@
+{
+  "name": "bv2mp3-studio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "本地运行的 Bilibili 音频导出工具：批量粘贴链接，自动下载音轨并转为 MP3。",
+  "license": "MIT",
+  "author": "Hindy Hong",
+  "homepage": "https://github.com/hindyhong/bv2mp3-studio#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hindyhong/bv2mp3-studio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hindyhong/bv2mp3-studio/issues"
+  },
+  "keywords": [
+    "bilibili",
+    "mp3",
+    "ffmpeg",
+    "audio",
+    "downloader",
+    "local-first"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.mjs --open"
+  },
+  "dependencies": {
+    "bv2mp3": "4.0.1"
+  }
+}

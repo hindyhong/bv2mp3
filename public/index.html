@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<title>BV2MP3 · Bilibili 音频导出</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23b4551f'/%3E%3Cpath d='M11 9v14l11-7z' fill='%23fdf9f3'/%3E%3C/svg%3E" />
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-play" viewBox="0 0 16 16"><path d="M5 3.1v9.8L12.6 8 5 3.1Z" fill="currentColor"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 16 16"><rect x="4.3" y="3.1" width="2.7" height="9.8" rx=".7" fill="currentColor"/><rect x="9" y="3.1" width="2.7" height="9.8" rx=".7" fill="currentColor"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 16 16"><path d="M2 5.2A1.6 1.6 0 0 1 3.6 3.6h2.5l1.3 1.5h5A1.6 1.6 0 0 1 14 6.7v4.1a1.6 1.6 0 0 1-1.6 1.6H3.6A1.6 1.6 0 0 1 2 10.8Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 16 16"><path d="M3 4.6h10M6.6 4.6V3.2h2.8v1.4M4.6 4.6l.6 8.2h5.6l.6-8.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<a class="skip" href="#main">跳到主要内容</a>
+
+<header class="masthead">
+  <div class="brand">
+    <h1>BV<span class="mark-2">2</span>MP3</h1>
+    <p class="tagline">Bilibili 音频导出 · 本地运行</p>
+  </div>
+  <div class="tools">
+    <button class="btn ghost" id="openFolder" type="button">
+      <svg class="ico" aria-hidden="true"><use href="#i-folder" /></svg>
+      <span>输出目录</span>
+    </button>
+    <button class="btn ghost" id="settingsToggle" type="button" aria-expanded="false" aria-controls="settings">设置</button>
+  </div>
+</header>
+
+<section class="settings" id="settings" hidden aria-label="设置">
+  <div class="field">
+    <label for="outputDir">输出目录</label>
+    <input id="outputDir" type="text" spellcheck="false" autocomplete="off" />
+  </div>
+  <div class="field field--narrow">
+    <label for="threads">并发数</label>
+    <input id="threads" type="number" min="1" max="16" step="1" inputmode="numeric" />
+  </div>
+  <div class="field-actions">
+    <button class="btn" id="saveSettings" type="button">保存</button>
+    <span class="note" id="settingsNote"></span>
+  </div>
+</section>
+
+<main class="layout" id="main">
+  <section class="pane" aria-labelledby="composeH">
+    <div class="pane-head">
+      <h2 id="composeH">链接</h2>
+      <span class="tally" id="tally">0 条</span>
+    </div>
+
+    <label class="sr-only" for="links">每行一个视频链接</label>
+    <textarea id="links" spellcheck="false" autocomplete="off" autocapitalize="off"
+      placeholder="每行一个链接，例如&#10;https://www.bilibili.com/video/BV1p1e26ZEXc&#10;BV16cbX6WEUZ"></textarea>
+
+    <div class="compose-foot">
+      <p class="note">支持 BV 号或完整网址；合集会自动展开为分P。同一批里的重复链接自动合并。</p>
+      <div class="compose-actions">
+        <span class="kbd-hint" aria-hidden="true"><kbd>⌘</kbd><kbd>↵</kbd></span>
+        <button class="btn primary" id="start" type="button">开始转换</button>
+      </div>
+    </div>
+
+    <div class="jobs" id="jobs" aria-live="polite"></div>
+  </section>
+
+  <section class="pane" aria-labelledby="libraryH">
+    <div class="pane-head">
+      <h2 id="libraryH">已导出</h2>
+      <span class="tally" id="fileTally">—</span>
+    </div>
+
+    <input id="filter" class="filter" type="search" placeholder="筛选文件名" spellcheck="false" aria-label="筛选文件名" />
+
+    <div class="files" id="files"></div>
+  </section>
+</main>
+
+<audio id="player" preload="metadata"></audio>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="module" src="/app.js"></script>
+</body>
+</html>
