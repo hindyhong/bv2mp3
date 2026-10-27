@@ -29,9 +29,15 @@
 
 ### macOS：双击启动
 
-双击 `start.command`。服务启动后会自动打开浏览器（默认 <http://127.0.0.1:7788>），地址同时复制到剪贴板。
+首次使用前，在项目目录执行一次（Git 不一定会保留可执行权限）：
 
-首次双击若被系统拦截：右键 `start.command` → 打开；或在终端执行一次 `chmod +x start.command`。
+```bash
+chmod +x start.command
+```
+
+然后双击 `start.command`。服务启动后会自动打开浏览器（默认 <http://127.0.0.1:7788>），地址同时复制到剪贴板。
+
+若被系统拦截，右键 `start.command` → 打开。
 
 ### 终端启动（macOS / Linux / Windows）
 
