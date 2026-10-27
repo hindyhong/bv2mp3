@@ -22,3 +22,9 @@ npm-debug.log*
 .DS_Store
 .vscode/
 .idea/
+
+# Agent / 本地工具临时文件
+.shots/
+.qoder/
+.claude/
+.agents/
